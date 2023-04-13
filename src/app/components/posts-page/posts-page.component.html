@@ -1,0 +1,149 @@
+<div class="container my-4">
+  <div class="pt-4 d-flex align-items-center justify-content-between gap-4">
+    <h2 class="flex-grow-1">Posts</h2>
+    <div class="d-flex align-items-center gap-2">
+      <i class="fa-solid fa-filter fs-5"></i>
+      <p
+        class="mb-0"
+        data-bs-toggle="collapse"
+        href="#collapseFilter"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseFilter"
+      >
+        FILTRAR
+      </p>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <i class="fa-solid fa-circle-plus fs-5"></i>
+      <p class="mb-0">NUEVO POST</p>
+    </div>
+  </div>
+  <hr class="" />
+  <div class="bg-light p-3 rounded collapse" id="collapseFilter">
+    <form action="" class="row align-items-end">
+      <div class="col-md-4">
+        <!-- <label for="autor" class="form-label">Autor</label> -->
+        <select class="form-select" id="autor" required="">
+          <option value="">Autor...</option>
+          <option>California</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <!-- <label for="ordenar" class="form-label">Ordenar</label> -->
+        <select class="form-select" id="ordenar" required="">
+          <option value="">Ordenar...</option>
+          <option>Ascendente</option>
+          <option>Descendente</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <!-- <label for="fecha" class="form-label">Fecha</label> -->
+        <input type="date" class="form-control" id="fecha" />
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-primary px-3" type="button">Filtrar</button>
+      </div>
+    </form>
+  </div>
+  <!-- ---------------------------------------------- POST ---------------------------------------------- -->
+  <div class="row mt-4">
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card mb-3 position-relative">
+        <i class="fa-regular fa-trash-can fs-5"></i>     
+        <img src="https://media.istockphoto.com/id/935311676/es/foto/programador-curioso-apuntando-a-la-pantalla-mientras-que-teniendo-en-cuenta-un-detalle.jpg?s=612x612&w=0&k=20&c=34XI8f1DKs9wxiJqEY8qlIU5s1HyCgt98la9HHDis5E=" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <div class="row">
+            <p class="card-text col-6"><small class="text-body-secondary">3 days ago</small></p>
+            <div class="col-6 d-flex justify-content-end align-items-start gap-3">
+                <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">147</small></p>
+                <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">2658</small></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card mb-3">
+          <img src="https://media.istockphoto.com/id/1369287203/es/foto/mujer-trabajando-en-el-ordenador-port%C3%A1til-en-casa.jpg?s=612x612&w=0&k=20&c=5qvJ42w8ecBwK2vpZFPRcpCcP6z5qwMZKnvS50NEcgo=" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="row">
+                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
+                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
+                <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card mb-3">
+          <img src="https://media.istockphoto.com/id/635927978/es/foto/micr%C3%B3fono-de-estudio-con-auriculares-de-producci%C3%B3n-en-directo.jpg?s=612x612&w=0&k=20&c=69Sh8EIvpUJ0P7lpLSx1D-mdzJuqdEGmhusqpypf7tg=" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="row">
+                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
+                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
+                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card mb-3">
+          <img src="https://images.unsplash.com/photo-1454982523318-4b6396f39d3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="row">
+                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
+                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
+                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card mb-3">
+          <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="row">
+                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
+                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
+                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card mb-3">
+          <img src="https://images.unsplash.com/photo-1591621840289-b58dbede62e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="row">
+                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
+                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
+                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

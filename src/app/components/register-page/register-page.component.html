@@ -1,0 +1,140 @@
+<div class="container my-4">
+  <div class="py-4 text-center">
+    <h2 class="mb-5">Registrate gratis</h2>
+    <p class="lead">
+      ¡Bienvenido/a! Este es el formulario de registro de nuestro sitio. Estamos
+      ancioso por que formes parte de nuestra comunidad. Una vez estes
+      registrado, podrás acceder a todas las funcionalidades y servicios que
+      ofrecemos. Esperamos que disfrutes de tu experiencia en nuestro sitio.
+      ¡Gracias por unirte a nosotros!
+    </p>
+  </div>
+  <div class="row justify-content-center g-5 pb-5">
+    <div class="col-md-5 col-lg-4 order-md-last">
+      <h4 class="d-flex justify-content-center  mb-3">
+        Foto
+      </h4>
+      <div class="card card-body text-center">
+        <img
+        alt="..."
+        class="m-auto card-img-top d-block rounded-circle w-75 shadow"
+        src="https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+      />
+      <p class="d-flex justify-content-center mt-4">
+        NOMBRE Y APELLIDOS
+      </p>
+      <p class="d-flex justify-content-center ">
+        username
+      </p>
+      </div>
+      
+    </div>
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Datos del usuario</h4>
+      <form class="needs-validation" novalidate="">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label for="firstName" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              placeholder=""
+              value=""
+              required=""
+            />
+            <div class="invalid-feedback">Se requiere un nombre válido.</div>
+          </div>
+          <div class="col-sm-6">
+            <label for="lastName" class="form-label">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              placeholder=""
+              value=""
+              required=""
+            />
+            <div class="invalid-feedback">Se requiere apellido válido.</div>
+          </div>
+          <div class="col-12">
+            <label for="foto" class="form-label"
+              >Foto de perfil <span class="text-muted">(Opcional)</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="foto"
+              placeholder=""
+            />
+          </div>
+          <div class="col-12">
+            <label for="email" class="form-label"
+              >Email <span class="text-muted">(Opcional)</span></label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="tu@example.com"
+            />
+            <div class="invalid-feedback">
+              Ingresa una dirección de correo electrónico.
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="username" class="form-label">Nombre de usuario</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text">@</span>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                placeholder="Nombre de usuario"
+                required=""
+              />
+              <div class="invalid-feedback">
+                Tu nombre de usuario es requerido.
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label for="password" class="form-label">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder=""
+              value=""
+              required=""
+            />
+          </div>
+          <div class="col-sm-6">
+            <label for="password-confirm" class="form-label"
+              >Confirmar contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="password-confirm"
+              placeholder=""
+              value=""
+              required=""
+            />
+          </div>
+        </div>
+
+        <div class="form-check my-4">
+          <input type="checkbox" class="form-check-input" id="same-address" />
+          <label class="form-check-label" for="same-address"
+            >Al hacer clic en Registrarse, aceptas los términos de uso.</label
+          >
+        </div>
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">
+          Registrarse
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

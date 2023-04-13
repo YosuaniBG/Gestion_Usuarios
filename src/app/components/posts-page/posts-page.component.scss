@@ -1,0 +1,23 @@
+@import "variables";
+
+.fa-trash-can {
+    position: absolute;
+    @include btn_redondos(10px, $color_rojo)
+  }
+
+.fa-thumbs-up{
+    transition: all 0.7s ease;
+
+    &:hover{
+        transform: scale(1.1);
+        transform: rotate(-30deg);
+    }
+}
+
+.fa-message{
+    transition: all 0.3s ease;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}

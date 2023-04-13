@@ -1,10 +1,10 @@
 <!-- --------------------------------------------------- HEADER ------------------------------------------------------------------>
 <header>
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar fija</a>
+  <nav class="navbar navbar-expand-md navbar-light bg-light d-flex ">
+    <div class="container-fluid ">
+      <a class="navbar-brand " href="#">Navbar fija</a>
       <button
-        class="navbar-toggler"
+        class="navbar-toggler ms-auto"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarCollapse"
@@ -17,13 +17,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="['/posts']">Posts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Enlace</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Deshabilitado</a>
+            <a class="nav-link disabled" href="#">Tareas</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -35,7 +32,13 @@
           />
           <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
-        <i class="fa-solid fa-circle-user ms-2 fs-2"></i>
+        <!-- <div>
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Registrarse</a>
+            </li>
+          </ul>
+        </div> -->
       </div>
     </div>
   </nav>
@@ -45,8 +48,8 @@
   <router-outlet></router-outlet>
 </main>
 <!------------------------------------- FOOTER Inicio ------------------------------------------------------------------------>
-<div class="container">
-  <footer class="py-5">
+<div class=" bg-light">
+  <footer class=" container py-5">
     <div class="row">
       <div class="col-6 col-md-2 mb-3">
         <h5>Sección</h5>

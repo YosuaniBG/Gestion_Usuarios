@@ -15,12 +15,12 @@
         <form class="p-4 p-md-5 border rounded-3 bg-light">
           <div class="form-floating mb-3">
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="floatingInput"
-              placeholder="name@example.com"
+              placeholder="username"
             />
-            <label for="floatingInput">Correo electrónico</label>
+            <label for="floatingInput">Nombre de usuario</label>
           </div>
           <div class="form-floating mb-3">
             <input
@@ -37,13 +37,14 @@
             </label>
           </div>
           <button class="w-100 btn btn-lg btn-primary" type="submit">
-            Regístrate
+            Iniciar sesión
           </button>
           <hr class="my-4" />
-          <small class="text-muted"
-            >Al hacer clic en Registrarse, aceptas los términos de uso.</small
-          >
+          <small class="text-muted d-flex justify-content-center gap-1">
+            ¿No tienes una cuenta? <a class="text-decoration-none" [routerLink]="['/register']" ><strong>Regístrate</strong></a>
+          </small>
         </form>
       </div>
     </div>
   </div>
+
