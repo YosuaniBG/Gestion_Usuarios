@@ -13,6 +13,12 @@ import {LoginComponent} from './components/home-page/login/login.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { PostsPageComponent } from './components/posts-page/posts-page.component';
 import { AboutComponent } from './components/home-page/about/about.component';
+import { CommentsPageComponent } from './components/comments-page/comments-page.component';
+import { TodoPageComponent } from './components/todo-page/todo-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './services/user.service';
+import { TrimPipe } from './pipes/trim.pipe';
+import { DateFromNowPipe } from './pipes/date-from-now.pipe';
 
 @NgModule({
   declarations: [
@@ -24,15 +30,23 @@ import { AboutComponent } from './components/home-page/about/about.component';
     LoginComponent,
     RegisterPageComponent,
     PostsPageComponent,
-    AboutComponent
+    AboutComponent,
+    CommentsPageComponent,
+    TodoPageComponent,
+    TrimPipe,
+    DateFromNowPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

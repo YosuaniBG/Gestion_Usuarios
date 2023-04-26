@@ -1,11 +1,10 @@
 // COLORES
 $color_rojo: rgba(184, 13, 13, 0.925);
+$color_verde: rgb(25, 135, 84, 0.925);
 $color_negro_transparente: rgba(86, 84, 84, 0.432);
 
 // BOTONES
-@mixin btn_redondos($right, $color) {
-    right: $right;
-    top: 5px;
+@mixin btn_redondos($color) {
     padding: 10px;
     background-color: $color_negro_transparente;
     border-radius: 50%;

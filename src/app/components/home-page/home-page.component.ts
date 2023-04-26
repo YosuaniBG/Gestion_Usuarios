@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
-  signed: boolean = true;
+  signed: boolean = false;
+
+  constructor(private userService:UserService){}
+
+  ngOnInit(){
+    let signedToken: string | null = localStorage.getItem('token')
+    if(signedToken)
+      this.signed = true;
+  }
 
 }

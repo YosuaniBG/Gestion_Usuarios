@@ -11,51 +11,108 @@
   </div>
   <div class="row justify-content-center g-5 pb-5">
     <div class="col-md-5 col-lg-4 order-md-last">
-      <h4 class="d-flex justify-content-center  mb-3">
-        Foto
-      </h4>
+      <h4 class="d-flex justify-content-center mb-3">Foto</h4>
       <div class="card card-body text-center">
-        <img
-        alt="..."
-        class="m-auto card-img-top d-block rounded-circle w-75 shadow"
-        src="https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-      />
-      <p class="d-flex justify-content-center mt-4">
-        NOMBRE Y APELLIDOS
-      </p>
-      <p class="d-flex justify-content-center ">
-        username
-      </p>
+          <img
+            alt="..."
+            class="card-img-top m-auto w-75 d-block shadow rounded-circle fill-image"
+            [src]="
+              register.value.image === ''
+                ? '/assets/no-image.png'
+                : register.value.image
+            "
+          />
+        <p class="d-flex justify-content-center mt-4">
+          {{
+            register.value.firstname === ""
+              ? "NOMBRE Y APELLIDOS"
+              : (register.value.firstname | uppercase)
+          }}
+          {{
+            register.value.lastname === ""
+              ? ""
+              : (register.value.lastname | uppercase)
+          }}
+        </p>
+        <p class="d-flex justify-content-center">
+          {{
+            register.value.username === ""
+              ? "username"
+              : register.value.username
+          }}
+        </p>
       </div>
-      
     </div>
     <div class="col-md-7 col-lg-8">
       <h4 class="mb-3">Datos del usuario</h4>
-      <form class="needs-validation" novalidate="">
+      <form
+        class="needs-validation"
+        novalidate=""
+        [formGroup]="register"
+        (ngSubmit)="sendRegister()"
+      >
         <div class="row g-3">
           <div class="col-sm-6">
-            <label for="firstName" class="form-label">Nombre</label>
+            <label for="firstname" class="form-label">Nombre</label>
             <input
               type="text"
               class="form-control"
-              id="firstName"
+              formControlName="firstname"
               placeholder=""
               value=""
               required=""
+              [ngClass]="{
+                'is-invalid':
+                  register.controls['firstname'].touched &&
+                  register.controls['firstname'].invalid,
+                'is-valid': register.controls['firstname'].valid
+              }"
             />
-            <div class="invalid-feedback">Se requiere un nombre válido.</div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                register.controls['firstname'].touched &&
+                register.controls['firstname'].invalid
+              "
+            >
+              <p *ngIf="register.controls['firstname'].errors?.['required']">
+                Por favor, ingrese su nombre, este campo es OBLIGATORIO
+              </p>
+              <p *ngIf="register.controls['firstname'].errors?.['minlength']">
+                La longitud debe ser mayo de 3 caracteres
+              </p>
+            </div>
           </div>
           <div class="col-sm-6">
-            <label for="lastName" class="form-label">Apellido</label>
+            <label for="lastname" class="form-label">Apellido</label>
             <input
               type="text"
               class="form-control"
-              id="lastName"
+              formControlName="lastname"
               placeholder=""
               value=""
               required=""
+              [ngClass]="{
+                'is-invalid':
+                  register.controls['lastname'].touched &&
+                  register.controls['lastname'].invalid,
+                'is-valid': register.controls['lastname'].valid
+              }"
             />
-            <div class="invalid-feedback">Se requiere apellido válido.</div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                register.controls['lastname'].touched &&
+                register.controls['lastname'].invalid
+              "
+            >
+              <p *ngIf="register.controls['lastname'].errors?.['required']">
+                Por favor, ingrese sus apellidos, este campo es OBLIGATORIO
+              </p>
+              <p *ngIf="register.controls['lastname'].errors?.['minlength']">
+                La longitud debe ser mayo de 2 caracteres
+              </p>
+            </div>
           </div>
           <div class="col-12">
             <label for="foto" class="form-label"
@@ -64,22 +121,38 @@
             <input
               type="text"
               class="form-control"
-              id="foto"
+              formControlName="image"
               placeholder=""
             />
           </div>
           <div class="col-12">
-            <label for="email" class="form-label"
-              >Email <span class="text-muted">(Opcional)</span></label
-            >
+            <label for="email" class="form-label">Email </label>
             <input
               type="email"
               class="form-control"
-              id="email"
+              formControlName="email"
               placeholder="tu@example.com"
+              [ngClass]="{
+                'is-invalid':
+                  register.controls['email'].touched &&
+                  register.controls['email'].invalid,
+                'is-valid': register.controls['email'].valid
+              }"
             />
-            <div class="invalid-feedback">
-              Ingresa una dirección de correo electrónico.
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                register.controls['email'].touched &&
+                register.controls['email'].invalid
+              "
+            >
+              <p *ngIf="register.controls['email'].errors?.['required']">
+                Por favor, ponga su correo electrónico, este campo es
+                OBLIGATORIO
+              </p>
+              <p *ngIf="register.controls['email'].errors?.['email']">
+                Su correo electrónico no es válido
+              </p>
             </div>
           </div>
           <div class="col-12">
@@ -89,50 +162,135 @@
               <input
                 type="text"
                 class="form-control"
-                id="username"
+                formControlName="username"
                 placeholder="Nombre de usuario"
                 required=""
+                [ngClass]="{
+                  'is-invalid':
+                    register.controls['username'].touched &&
+                    register.controls['username'].invalid,
+                  'is-valid': register.controls['username'].valid
+                }"
               />
-              <div class="invalid-feedback">
-                Tu nombre de usuario es requerido.
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  register.controls['username'].touched &&
+                  register.controls['username'].invalid
+                "
+              >
+                <p *ngIf="register.controls['username'].errors?.['required']">
+                  Por favor, elije un nombre de usuario, este campo es
+                  OBLIGATORIO
+                </p>
               </div>
             </div>
           </div>
+          <div class="row g-3" *ngIf="signed">
+            <div class="col-sm-6 mx-8">
+              <label for="currentPassword" class="form-label"
+                >Contraseña actual</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                formControlName="currentPassword"
+                placeholder=""
+                value=""
+                required=""
+              />
+            </div>
+          </div>
           <div class="col-sm-6">
-            <label for="password" class="form-label">Contraseña</label>
+            <label for="newPassword" class="form-label">Contraseña</label>
             <input
               type="password"
               class="form-control"
-              id="password"
+              formControlName="password"
               placeholder=""
               value=""
               required=""
+              [ngClass]="{
+                'is-invalid':
+                  register.controls['password'].touched &&
+                  register.controls['password'].invalid,
+                'is-valid': register.controls['password'].valid
+              }"
             />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                register.controls['password'].touched &&
+                register.controls['password'].invalid
+              "
+            >
+              <p *ngIf="register.controls['password'].errors?.['required']">
+                Por favor, elija una contraseña, este campo es OBLIGATORIO
+              </p>
+              <p
+                *ngIf="register.controls['password'].errors?.['minlength'] || register.controls['password'].errors?.['pattern']"
+              >
+                Su contraseña no cumple con la seguridad requerida
+              </p>
+            </div>
           </div>
           <div class="col-sm-6">
-            <label for="password-confirm" class="form-label"
+            <label for="confirmPassword" class="form-label"
               >Confirmar contraseña</label
             >
             <input
               type="password"
               class="form-control"
-              id="password-confirm"
+              formControlName="confirmPassword"
               placeholder=""
               value=""
               required=""
+              [ngClass]="{
+                'is-invalid':
+                  register.controls['confirmPassword'].touched &&
+                  register.controls['confirmPassword'].invalid,
+                'is-valid': register.controls['confirmPassword'].valid
+              }"
             />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                register.controls['confirmPassword'].touched &&
+                register.controls['confirmPassword'].invalid
+              "
+            >
+              <p
+                *ngIf="register.controls['confirmPassword'].errors?.['required']"
+              >
+                Debe confirmar su contraseña
+              </p>
+              <p
+                *ngIf="register.controls['confirmPassword'].errors?.['mustMatch']"
+              >
+                No coincide su contraseña
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="form-check my-4">
-          <input type="checkbox" class="form-check-input" id="same-address" />
-          <label class="form-check-label" for="same-address"
+        <div class="form-check my-4" *ngIf="!signed">
+          <input
+            id="agree"
+            type="checkbox"
+            class="form-check-input"
+            formControlName="agreements"
+          />
+          <label class="form-check-label" for="agree"
             >Al hacer clic en Registrarse, aceptas los términos de uso.</label
           >
         </div>
 
-        <button class="w-100 btn btn-primary btn-lg" type="submit">
-          Registrarse
+        <button
+          class="w-100 btn btn-primary btn-lg my-5"
+          type="submit"
+          [disabled]="!register.valid"
+        >
+          {{ signed ? "Actualizar datos" : "Registrarse" }}
         </button>
       </form>
     </div>

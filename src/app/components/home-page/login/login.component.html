@@ -12,22 +12,26 @@
         </p>
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-light">
+        <form #loginForm="ngForm" (ngSubmit)="loginProcess(loginForm)" class="p-4 p-md-5 border rounded-3 bg-light">
           <div class="form-floating mb-3">
             <input
               type="text"
               class="form-control"
               id="floatingInput"
-              placeholder="username"
+              placeholder="email"
+              name="email"
+              ngModel
             />
-            <label for="floatingInput">Nombre de usuario</label>
+            <label for="floatingInput">Correo electrónico</label>
           </div>
           <div class="form-floating mb-3">
             <input
               type="password"
               class="form-control"
               id="floatingPassword"
-              placeholder="Contraseña"
+              placeholder="password"
+              name="password"
+              ngModel
             />
             <label for="floatingPassword">Contraseña</label>
           </div>

@@ -1,9 +1,19 @@
 @import "variables";
 
-.fa-trash-can {
+.top-buttons{
     position: absolute;
-    @include btn_redondos(10px, $color_rojo)
-  }
+    top: 5px;
+    right: 10px;
+    display: block;
+
+    .fa-trash-can {
+        @include btn_redondos($color_rojo)
+      }
+    
+    .fa-pen {
+        @include btn_redondos($color_verde)
+      }
+}
 
 .fa-thumbs-up{
     transition: all 0.7s ease;
@@ -20,4 +30,9 @@
     &:hover{
         transform: scale(1.1);
     }
+}
+
+.card-img-top{
+    height: 250px;
+    object-fit: cover;
 }

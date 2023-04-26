@@ -16,11 +16,20 @@
     </div>
     <div class="d-flex align-items-center gap-2">
       <i class="fa-solid fa-circle-plus fs-5"></i>
-      <p class="mb-0">NUEVO POST</p>
+      <p
+        class="mb-0"
+        data-bs-toggle="collapse"
+        href="#collapseNuevoPost"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseNuevoPost"
+      >
+        NUEVO POST
+      </p>
     </div>
   </div>
   <hr class="" />
-  <div class="bg-light p-3 rounded collapse" id="collapseFilter">
+  <div class="bg-light p-3 rounded collapse mb-3" id="collapseFilter">
     <form action="" class="row align-items-end">
       <div class="col-md-4">
         <!-- <label for="autor" class="form-label">Autor</label> -->
@@ -46,104 +55,266 @@
       </div>
     </form>
   </div>
+  <!-- ----------------------------- Formulario de Post ------------------------------------- -->
+  <div class="bg-light p-3 rounded collapse" id="collapseNuevoPost">
+    <form
+      action=""
+      [formGroup]="formPost"
+      (ngSubmit)="enviarPost()"
+      class="row align-items-start"
+    >
+      <div class="d-flex flex-column gap-3 col-md-5">
+        <div class="">
+          <label for="title" class="form-label">Titulo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Titulo del artículo..."
+            formControlName="title"
+          />
+        </div>
+        <div class="">
+          <label for="image" class="form-label">Imagen</label>
+          <input
+            type="text"
+            class="form-control"
+            id="image"
+            placeholder="Url de la imagen..."
+            formControlName="image"
+          />
+        </div>
+      </div>
+      <div class="col-md-5">
+        <label for="description" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="description"
+          rows="5"
+          placeholder="Descripción del artículo..."
+          formControlName="description"
+        ></textarea>
+      </div>
+      <div class="col-md-2 mt-auto">
+        <button
+          class="btn btn-primary px-2"
+          type="submit"
+          [disabled]="!formPost.valid"
+          data-bs-toggle="collapse"
+          aria-controls="collapseNuevoPost"
+          href="#collapseNuevoPost"
+        >
+          Añadir
+        </button>
+      </div>
+    </form>
+  </div>
   <!-- ---------------------------------------------- POST ---------------------------------------------- -->
   <div class="row mt-4">
-    <div class="col-sm-6 col-lg-4 mb-4">
+    <div class="col-sm-6 col-lg-4 mb-4" *ngFor="let post of listPosts">
       <div class="card mb-3 position-relative">
-        <i class="fa-regular fa-trash-can fs-5"></i>     
-        <img src="https://media.istockphoto.com/id/935311676/es/foto/programador-curioso-apuntando-a-la-pantalla-mientras-que-teniendo-en-cuenta-un-detalle.jpg?s=612x612&w=0&k=20&c=34XI8f1DKs9wxiJqEY8qlIU5s1HyCgt98la9HHDis5E=" class="card-img-top" alt="...">
+        <div class="top-buttons d-flex gap-1" *ngIf="post.id_user == userSignedId">
+          <i class="fa-solid fa-pen fs-5"></i>
+          <i class="fa-regular fa-trash-can fs-5"></i>
+        </div>
+        <img
+          [src]="post.image"
+          onerror="this.onerror=null; this.src='../assets/sin-image.png';"
+          class="card-img-top"
+          alt="..."         
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">
+            {{post.description | trim }}
+          </p>
+          <div class="row">
+            <p class="card-text col-6">
+              <small class="text-body-secondary">{{post.publication_date | dateFromNow }}</small>
+            </p>
+            <div
+              class="col-6 d-flex justify-content-end align-items-start gap-3"
+            >
+              <p class="mb-0">
+                <i class="fa-regular fa-thumbs-up fs-5 link-primary"></i
+                ><small class="ms-1">{{loadLikes(post.id)}}</small>
+              </p>
+              <a
+                [routerLink]="['/posts/2']"
+                class="text-decoration-none link-dark"
+                ><i class="fa-regular fa-message fs-5 link-primary"></i
+                ><small class="ms-1">{{loadComments(post.id)}}</small></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card mb-3">
+        <img
+          src="https://media.istockphoto.com/id/1369287203/es/foto/mujer-trabajando-en-el-ordenador-port%C3%A1til-en-casa.jpg?s=612x612&w=0&k=20&c=5qvJ42w8ecBwK2vpZFPRcpCcP6z5qwMZKnvS50NEcgo="
+          class="card-img-top"
+          alt="..."
+          height="100%"
+        />
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
           <div class="row">
-            <p class="card-text col-6"><small class="text-body-secondary">3 days ago</small></p>
-            <div class="col-6 d-flex justify-content-end align-items-start gap-3">
-                <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">147</small></p>
-                <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">2658</small></a>
+            <p class="card-text col-6">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+            <div
+              class="col-6 d-flex justify-content-end align-items-start gap-3"
+            >
+              <p class="mb-0">
+                <i class="fa-regular fa-thumbs-up fs-5 link-primary"></i
+                ><small class="ms-1">0</small>
+              </p>
+              <a href="#" class="text-decoration-none link-dark"
+                ><i class="fa-regular fa-message fs-5 link-primary"></i
+                ><small class="ms-1">0</small></a
+              >
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-6 col-lg-4 mb-4">
-        <div class="card mb-3">
-          <img src="https://media.istockphoto.com/id/1369287203/es/foto/mujer-trabajando-en-el-ordenador-port%C3%A1til-en-casa.jpg?s=612x612&w=0&k=20&c=5qvJ42w8ecBwK2vpZFPRcpCcP6z5qwMZKnvS50NEcgo=" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="row">
-                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
-                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
-                <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
-                </div>
-              </div>
+      <div class="card mb-3">
+        <img
+          src="https://media.istockphoto.com/id/635927978/es/foto/micr%C3%B3fono-de-estudio-con-auriculares-de-producci%C3%B3n-en-directo.jpg?s=612x612&w=0&k=20&c=69Sh8EIvpUJ0P7lpLSx1D-mdzJuqdEGmhusqpypf7tg="
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+          <div class="row">
+            <p class="card-text col-6">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+            <div
+              class="col-6 d-flex justify-content-end align-items-start gap-3"
+            >
+              <p class="mb-0">
+                <i class="fa-regular fa-thumbs-up fs-5 link-primary"></i
+                ><small class="ms-1">0</small>
+              </p>
+              <a href="#" class="text-decoration-none link-dark"
+                ><i class="fa-regular fa-message fs-5 link-primary"></i
+                ><small class="ms-1">0</small></a
+              >
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-lg-4 mb-4">
-        <div class="card mb-3">
-          <img src="https://media.istockphoto.com/id/635927978/es/foto/micr%C3%B3fono-de-estudio-con-auriculares-de-producci%C3%B3n-en-directo.jpg?s=612x612&w=0&k=20&c=69Sh8EIvpUJ0P7lpLSx1D-mdzJuqdEGmhusqpypf7tg=" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="row">
-                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
-                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
-                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
-                </div>
-              </div>
+    </div>
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card mb-3">
+        <img
+          src="https://images.unsplash.com/photo-1454982523318-4b6396f39d3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+          <div class="row">
+            <p class="card-text col-6">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+            <div
+              class="col-6 d-flex justify-content-end align-items-start gap-3"
+            >
+              <p class="mb-0">
+                <i class="fa-regular fa-thumbs-up fs-5 link-primary"></i
+                ><small class="ms-1">0</small>
+              </p>
+              <a href="#" class="text-decoration-none link-dark"
+                ><i class="fa-regular fa-message fs-5 link-primary"></i
+                ><small class="ms-1">0</small></a
+              >
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-lg-4 mb-4">
-        <div class="card mb-3">
-          <img src="https://images.unsplash.com/photo-1454982523318-4b6396f39d3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="row">
-                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
-                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
-                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
-                </div>
-              </div>
+    </div>
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card mb-3">
+        <img
+          src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+          <div class="row">
+            <p class="card-text col-6">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+            <div
+              class="col-6 d-flex justify-content-end align-items-start gap-3"
+            >
+              <p class="mb-0">
+                <i class="fa-regular fa-thumbs-up fs-5 link-primary"></i
+                ><small class="ms-1">0</small>
+              </p>
+              <a href="#" class="text-decoration-none link-dark"
+                ><i class="fa-regular fa-message fs-5 link-primary"></i
+                ><small class="ms-1">0</small></a
+              >
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-lg-4 mb-4">
-        <div class="card mb-3">
-          <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="row">
-                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
-                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
-                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
-                </div>
-              </div>
+    </div>
+    <div class="col-sm-6 col-lg-4 mb-4">
+      <div class="card mb-3">
+        <img
+          src="https://images.unsplash.com/photo-1591621840289-b58dbede62e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+          <div class="row">
+            <p class="card-text col-6">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+            <div
+              class="col-6 d-flex justify-content-end align-items-start gap-3"
+            >
+              <p class="mb-0">
+                <i class="fa-regular fa-thumbs-up fs-5 link-primary"></i
+                ><small class="ms-1">0</small>
+              </p>
+              <a href="#" class="text-decoration-none link-dark"
+                ><i class="fa-regular fa-message fs-5 link-primary"></i
+                ><small class="ms-1">0</small></a
+              >
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-lg-4 mb-4">
-        <div class="card mb-3">
-          <img src="https://images.unsplash.com/photo-1591621840289-b58dbede62e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="row">
-                <p class="card-text col-6"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                <div class="col-6 d-flex justify-content-end align-items-start gap-3">
-                    <p class="mb-0"><i class="fa-regular fa-thumbs-up fs-5 link-primary"></i><small class="ms-1">0</small></p>
-                    <a href="#" class="text-decoration-none link-dark"><i class="fa-regular fa-message fs-5 link-primary"></i><small class="ms-1">0</small></a>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
+    </div> -->
   </div>
 </div>

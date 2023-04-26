@@ -1,0 +1,129 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-lg-9 pt-4">
+      <h2 class="">Tareas</h2>
+      <hr class="" />
+
+      <!-- ------------------------------------- TAREAS ------------------------------------------------------>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle" >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Tarea</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Fecha de cumplimiento</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Tarea para la empresa</td>
+              <td>
+                Hacer un historial de todas las cosas que tenia que hacer hace
+                un mes atras
+              </td>
+              <td>faltan 3 días</td>
+              <td class="text-center"><p class="btn btn-primary px-3 mb-0">Programada</p></td>
+              <td class="text-center">
+                <div class="d-flex gap-2">
+                  <i class="fa-regular fa-pen-to-square fs-4 text-primary"></i>
+                  <i class="fa-regular fa-trash-can fs-4 text-danger"></i>
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-success bg-opacity-25">
+              <th scope="row">2</th>
+              <td>Compras</td>
+              <td>
+                Hacer un listado de las cosas de debo ir a comprar en el
+                supermercado
+              </td>
+              <td>faltan 2 días</td>
+              <td class="text-center"><p class="btn btn-success px-4 mb-0">Cumplida</p></td>
+              <td class="text-center">
+                <div class="d-flex gap-2">
+                  <i class="fa-regular fa-pen-to-square fs-4 text-primary"></i>
+                  <i class="fa-regular fa-trash-can fs-4 text-danger"></i>
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-danger bg-opacity-25">
+              <th scope="row">3</th>
+              <td>Prgramación</td>
+              <td>
+                Diseñar el modulo asociado a los ToDo, dejarlo listo para
+                comenzar con la programación del Backend
+              </td>
+              <td>1 día de atraso</td>
+              <td class="text-center"><p class="btn btn-danger px-4 mb-0">Atrasada</p></td>
+              <td class="text-center">
+                <div class="d-flex gap-2">
+                  <i class="fa-regular fa-pen-to-square fs-4 text-primary"></i>
+                  <i class="fa-regular fa-trash-can fs-4 text-danger"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- ------------------------------------ Añadir tarea ---------------------------------------->
+    <div class="col-lg-3 pt-4">
+      <div class="d-flex align-items-center justify-content-end gap-2 pt-2 mt-2">
+        <i class="fa-solid fa-circle-plus fs-5"></i>
+        <p
+          class="mb-0"
+          data-bs-toggle="collapse"
+          href="#collapseFilter"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseFilter"
+        >
+          NUEVA TAREA
+        </p>
+      </div>
+      <hr class="" />
+      <div class="bg-light p-3 rounded collapse" id="collapseFilter">
+        <form action="" class="d-flex flex-column justify-content-start gap-3">
+          <div class="">
+            <label for="tarea" class="form-label">Tarea</label>
+            <input
+              type="text"
+              class="form-control"
+              id="tarea"
+              placeholder="Nombre de la tarea..."
+            />
+          </div>
+          <div class="">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea
+                rows="2"
+              type="text"
+              class="form-control"
+              id="descripcion"
+              placeholder="Descripción..."
+            ></textarea>
+          </div>
+          <div class="">
+            <label for="fecha" class="form-label">Fecha de cumplimiento</label>
+            <input type="date" class="form-control" id="fecha" />
+          </div>
+          <div class="">
+            <label for="estado" class="form-label">Estado</label>
+            <select class="form-select" id="estado" required="">
+              <option value="">Programada</option>
+              <option>Cumplida</option>
+              <option>Atrazada</option>
+            </select>
+          </div>
+          <div class="">
+            <button class="btn btn-primary px-3" type="button">Añadir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
