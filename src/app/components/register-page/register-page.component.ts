@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.scss']
 })
-export class RegisterPageComponent {
+export class RegisterPageComponent implements OnInit {
   signed: boolean = false;
   register: FormGroup;
 

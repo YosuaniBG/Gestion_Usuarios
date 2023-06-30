@@ -40,18 +40,18 @@ export class PostsPageComponent {
     
   }
 
-  async loadLikes(id:number): Promise<number>{
-    const likes = await this.postService.getOnePost(id);
-    console.log(likes);
-    return likes;
+  // async loadLikes(id:number): Promise<number>{
+  //   const likes = await this.postService.getOnePost(id);
+  //   console.log(likes);
+  //   return likes;
     
-  }
+  // }
 
-  async loadComments(id:number): Promise<number>{
-    const comments = await this.postService.getOnePost(id);
-    console.log(comments);
-    return comments;
-  }
+  // async loadComments(id:number): Promise<number>{
+  //   const comments = await this.postService.getOnePost(id);
+  //   console.log(comments);
+  //   return comments;
+  // }
 
   async enviarPost() {
     let data = this.formPost.value;
