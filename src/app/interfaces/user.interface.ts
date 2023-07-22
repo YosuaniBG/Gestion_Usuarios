@@ -5,5 +5,9 @@ export interface User {
     username: string,
     email: string,
     password: string,
-    image: string
+    phone?: number,
+    image?: string,
+    address?: string,
+    description?: string,
+    cover?:string
 }

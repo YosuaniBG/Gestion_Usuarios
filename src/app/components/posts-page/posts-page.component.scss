@@ -36,3 +36,22 @@
     height: 250px;
     object-fit: cover;
 }
+
+.read-more{
+    color: rgb(56, 56, 56);
+    font-weight: 400;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(153, 158, 163, 0.827);
+    text-decoration-thickness: 1px ;
+
+    &:hover{
+        color: rgba(153, 158, 163, 0.827);
+        text-decoration-color: rgba(56, 56, 56);
+    }
+}
+
+.disabled {
+    opacity: 0.5; /* Puedes ajustar el estilo de deshabilitado según tus necesidades */
+    pointer-events: none;
+    cursor: not-allowed;
+  }

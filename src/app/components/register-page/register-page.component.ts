@@ -12,7 +12,19 @@ import Swal from 'sweetalert2'
 })
 export class RegisterPageComponent implements OnInit {
   signed: boolean = false;
+  changePassword: boolean = false;
+  passwordVisible: boolean = false;  
+
   register: FormGroup;
+
+  userSigned: User = {
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: '',
+    image: ''
+  }
 
   constructor(
     private userService: UserService,
@@ -25,10 +37,9 @@ export class RegisterPageComponent implements OnInit {
       image: new FormControl(''),
       email: new FormControl('',[Validators.required, Validators.email]),
       username: new FormControl('',[Validators.required]),
-      currentPassword: new FormControl('',[]),
-      password: new FormControl('',[Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%.*?&])[A-Za-z\d@$!%.*?&]+$/)]),
-      confirmPassword: new FormControl('',[Validators.required]),
-      agreements: new FormControl('',[Validators.requiredTrue])
+      agreements: new FormControl('',[Validators.requiredTrue]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%.*?&])[A-Za-z\d@$!%.*?&]+$/)]),
+      confirmPassword: new FormControl('', [Validators.required])
     },
     {
       validators: this.passwordMatch('password','confirmPassword')
@@ -94,7 +105,19 @@ export class RegisterPageComponent implements OnInit {
         icon: 'warning'
       })
     }
+  }
 
+  // changePasswordForm(){
+  //   alert('Se cambio el mensaje')
+  //   this.toggleChangePassword();
+  // }
+
+  // toggleChangePassword(): void {
+  //   this.changePassword = !this.changePassword;
+  // }
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
   }
 
 }

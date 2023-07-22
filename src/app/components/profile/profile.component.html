@@ -1,0 +1,403 @@
+<div class="container my-4">
+  <div class="row gap-5">
+    <div class="col-lg-8">
+      <div class="shadow-sm bg-light mb-4 rounded-3 position-relative p-0">
+        <div
+          class="cover"
+          [style.background-image]="
+            'url(' +
+            (userInfo.cover
+              ? userInfo.cover
+              : 'https://placehold.co/600x400/423f3f/FFFFFF/png') +
+            ')'
+          "
+        ></div>
+        <div
+          class="image-profile rounded-circle"
+          [style.background-image]="
+            'url(' +
+            (userInfo.image
+              ? userInfo.image
+              : './assets/no-image.png') +
+            ')'
+          "
+        ></div>
+        <span
+          class="change-cover rounded-circle"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          ><i class="fa-solid fa-camera"></i
+        ></span>
+        <div class="body py-4 px-5 row">
+          <div class="col-lg-8">
+            <h3 class="mb-0">
+              {{ userInfo.firstname }} {{ userInfo.lastname }}
+            </h3>
+            <span>@{{ userInfo.username }}</span>
+          </div>
+          <div class="col-lg-4 d-flex flex-column">
+            <span class="fs-6"
+              ><i class="fa-regular fa-envelope"></i> {{ userInfo.email }}</span
+            >
+            <span class="fs-6"
+              ><i class="fa-solid fa-phone"></i> {{ userInfo.phone }}</span
+            >
+          </div>
+          <div class="mt-3">
+            <button
+              class="btn btn-outline-primary"
+              (click)="editProfileActive()"
+            >
+              Editar perfil
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="shadow-sm px-5 py-4 bg-light mb-4 rounded-3"
+        *ngIf="editProfile"
+      >
+        <h5 class="text-muted">Editar información</h5>
+        <hr />
+        <form [formGroup]="userInfoForm" (ngSubmit)="updateUserInfor()">
+          <div class="row">
+            <div class="firstname col-lg-4 mb-3">
+              <label class="form-label" for="firstname">Nombre</label>
+              <input
+                class="form-control"
+                formControlName="firstname"
+                id="firstname"
+                type="text"
+              />
+            </div>
+            <div class="lastname col-lg-4 mb-3">
+              <label class="form-label" for="lastname">Apellidos</label>
+              <input
+                class="form-control"
+                formControlName="lastname"
+                id="lastname"
+                type="text"
+              />
+            </div>
+            <div class="username col-lg-4 mb-3">
+              <label class="form-label" for="username">Nickname</label>
+              <input
+                class="form-control"
+                formControlName="username"
+                id="username"
+                type="text"
+              />
+            </div>
+            <div class="email col-lg-6 mb-3">
+              <label class="form-label" for="email">Correo electrónico</label>
+              <input
+                class="form-control"
+                formControlName="email"
+                id="email"
+                type="text"
+              />
+            </div>
+            <div class="phone col-lg-6 mb-3">
+              <label class="form-label" for="phone">Teléfono</label>
+              <input
+                class="form-control"
+                formControlName="phone"
+                id="phone"
+                type="text"
+              />
+            </div>
+            <div class="image col-lg-12 mb-3">
+              <label class="form-label" for="image">Foto de perfil</label>
+              <input
+                class="form-control"
+                formControlName="image"
+                id="image"
+                type="text"
+              />
+            </div>
+            <div class="address col-12 mb-3">
+              <label class="form-label" for="address">Dirección</label>
+              <input
+                class="form-control"
+                formControlName="address"
+                id="address"
+                type="text"
+              />
+            </div>
+            <div class="geolocation mb-3">
+              <input
+                class="form-check-input"
+                role="switch"
+                id="geolocation"
+                type="checkbox"
+              />
+              <label class="ms-2 form-label" for="geolocation"
+                >Usar geolocalización</label
+              >
+            </div>
+            <div class="description col-12 mb-3">
+              <label class="form-label" for="description"
+                >Breve descripción</label
+              >
+              <textarea
+                class="form-control"
+                formControlName="description"
+                id="description"
+                rows="5"
+                placeholder="Hablemos un poco sobre tí..."
+              ></textarea>
+            </div>
+            <div class="change_pass mb-3">
+              <span
+                class="text-decoration-none text-secondary fw-bolder"
+                (click)="toggleChangePassword()"
+                >Cambiar contraseña<i class="ms-2 fa-solid fa-pen fs-6"></i
+              ></span>
+            </div>
+            <div class="col-12 px-3 my-3" *ngIf="changePassword">
+              <form
+                [formGroup]="passwordForm"
+                (ngSubmit)="changePasswordForm()"
+              >
+                <div class="row g-3 bg-light pb-3 rounded-2 border border-1">
+                  <div class="col-sm-4 mx-8">
+                    <label for="currentPassword" class="form-label"
+                      >Contraseña actual</label
+                    >
+                    <input
+                      type="{{ passwordVisible ? 'text' : 'password' }}"
+                      class="form-control"
+                      formControlName="currentPassword"
+                      placeholder=""
+                      value=""
+                      required=""
+                    />
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="newPassword" class="form-label"
+                      >Nueva contraseña</label
+                    >
+                    <input
+                      type="{{ passwordVisible ? 'text' : 'password' }}"
+                      class="form-control"
+                      formControlName="password"
+                      placeholder=""
+                      value=""
+                      required=""
+                      [ngClass]="{
+                        'is-invalid':
+                          passwordForm.controls['password'].touched &&
+                          passwordForm.controls['password'].invalid,
+                        'is-valid': passwordForm.controls['password'].valid
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        passwordForm.controls['password'].touched &&
+                        passwordForm.controls['password'].invalid
+                      "
+                    >
+                      <p
+                        *ngIf="passwordForm.controls['password'].errors?.['required']"
+                      >
+                        Por favor, elija una contraseña, este campo es
+                        OBLIGATORIO
+                      </p>
+                      <p
+                        *ngIf="passwordForm.controls['password'].errors?.['minlength'] || passwordForm.controls['password'].errors?.['pattern']"
+                      >
+                        Su contraseña no cumple con la seguridad requerida
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="confirmPassword" class="form-label"
+                      >Confirmar contraseña</label
+                    >
+                    <input
+                      type="{{ passwordVisible ? 'text' : 'password' }}"
+                      class="form-control"
+                      formControlName="confirmPassword"
+                      placeholder=""
+                      value=""
+                      required=""
+                      [ngClass]="{
+                        'is-invalid':
+                          passwordForm.controls['confirmPassword'].touched &&
+                          passwordForm.controls['confirmPassword'].invalid,
+                        'is-valid':
+                          passwordForm.controls['confirmPassword'].valid
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        passwordForm.controls['confirmPassword'].touched &&
+                        passwordForm.controls['confirmPassword'].invalid
+                      "
+                    >
+                      <p
+                        *ngIf="passwordForm.controls['confirmPassword'].errors?.['required']"
+                      >
+                        Debe confirmar su contraseña
+                      </p>
+                      <p
+                        *ngIf="passwordForm.controls['confirmPassword'].errors?.['mustMatch']"
+                      >
+                        No coincide su contraseña
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckChecked"
+                        (click)="togglePasswordVisibility()"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="flexSwitchCheckChecked"
+                        >Mostrar contraseñas</label
+                      >
+                    </div>
+                    <div class="px-8">
+                      <button
+                        class="btn btn-outline-success"
+                        type="submit"
+                        [disabled]="!passwordForm.valid"
+                      >
+                        Cambiar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-12 mb-3 d-flex gap-2">
+              <button class="btn btn-outline-primary" type="submit">
+                Actualizar
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                (click)="cancelEdition()"
+                type="button"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="shadow-sm px-5 py-4 bg-light mb-4 rounded-3"
+        *ngIf="!editProfile"
+      >
+        <h5 class="text-muted">Acerca de mi</h5>
+        <hr />
+        <p>
+          <strong>Dirección: </strong>
+          {{ userInfo.address !== null ? userInfo.address : "--" }}
+        </p>
+        <p><strong>Descripción: </strong></p>
+        <p>
+          {{
+            userInfo.description !== null
+              ? userInfo.description
+              : "Usted aún no ha completado esta información, por favor complete sus datos"
+          }}
+        </p>
+      </div>
+      <hr />
+      <h4 class="text-muted mb-4">Tareas</h4>
+      <div class="card-indic d-flex flex-wrap justify-content-between gap-3">
+        <div
+          class="shadow flex-fill d-flex align-items-end gap-3 px-5 py-4 bg-danger mb-4 rounded-3"
+        >
+          <span class="fw-bold text-white">5</span>
+          <p class="fs-4 fw-bolder text-white">Atrazadas</p>
+        </div>
+        <div
+          class="shadow flex-fill d-flex align-items-end gap-3 px-5 py-4 bg-success mb-4 rounded-3"
+        >
+          <span class="fw-bold text-white">1</span>
+          <p class="fs-4 fw-bolder text-white">Cumplidas</p>
+        </div>
+        <div
+          class="shadow flex-fill d-flex align-items-end gap-3 px-5 py-4 bg-primary mb-4 rounded-3"
+        >
+          <span class="fw-bold text-white">2</span>
+          <p class="fs-4 fw-bolder text-white">Pendientes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 p-0">
+      <div class="p-4 shadow-sm bg-light rounded-3">
+        <h5 class="text-muted mb-3">Novedades</h5>
+        <div class="news">
+            <div class="card-news d-flex flex-column gap-2 mb-4" *ngFor="let new of newsList">
+              <img class="w-100" [src]="new.urlToImage" alt="" />
+              <a href="{{new.url}}"><span>{{ new.title | trim }} </span></a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- modal section -->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Cambiar imagen de cover
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form #coverForm="ngForm" (ngSubmit)="changeCover(coverForm)">
+        <div class="modal-body">
+          <label class="form-label" for="cover">URL de la imagen</label>
+          <input
+            class="form-control"
+            id="cover"
+            type="text"
+            name="cover"
+            ngModel
+          />
+          <div class="mt-3 d-flex justify-content-end gap-2">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Establecer nueva imagen
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -13,15 +13,15 @@
     <div class="col-md-5 col-lg-4 order-md-last">
       <h4 class="d-flex justify-content-center mb-3">Foto</h4>
       <div class="card card-body text-center">
-          <img
-            alt="..."
-            class="card-img-top m-auto w-75 d-block shadow rounded-circle fill-image"
-            [src]="
-              register.value.image === ''
-                ? '/assets/no-image.png'
-                : register.value.image
-            "
-          />
+        <img
+          alt="..."
+          class="card-img-top m-auto w-75 d-block shadow rounded-circle fill-image"
+          [src]="
+            register.value.image === ''
+              ? '/assets/no-image.png'
+              : register.value.image
+          "
+        />
         <p class="d-flex justify-content-center mt-4">
           {{
             register.value.firstname === ""
@@ -49,8 +49,7 @@
         class="needs-validation"
         novalidate=""
         [formGroup]="register"
-        (ngSubmit)="sendRegister()"
-      >
+        (ngSubmit)="sendRegister()">
         <div class="row g-3">
           <div class="col-sm-6">
             <label for="firstname" class="form-label">Nombre</label>
@@ -186,96 +185,83 @@
               </div>
             </div>
           </div>
-          
-          <div class="row g-3" *ngIf="signed">
-            <div class="col-sm-6 mx-8">
-              <label for="currentPassword" class="form-label"
-                >Contraseña actual</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                formControlName="currentPassword"
-                placeholder=""
-                value=""
-                required=""
-              />
+          <div class="col-12 d-flex gap-3">
+            <!-- <div class="row g-3 bg-light pb-3 rounded-2 border border-1 col-12 px-3"> -->
+              <div class="flex-fill">
+                <label for="newPassword" class="form-label">Contraseña</label>
+                <input
+                  type="{{ passwordVisible ? 'text' : 'password' }}"
+                  class="form-control"
+                  formControlName="password"
+                  placeholder=""
+                  value=""
+                  required=""
+                  [ngClass]="{
+                    'is-invalid':
+                      register.controls['password'].touched &&
+                      register.controls['password'].invalid,
+                    'is-valid': register.controls['password'].valid
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    register.controls['password'].touched &&
+                    register.controls['password'].invalid
+                  "
+                >
+                  <p *ngIf="register.controls['password'].errors?.['required']">
+                    Por favor, elija una contraseña, este campo es OBLIGATORIO
+                  </p>
+                  <p
+                    *ngIf="register.controls['password'].errors?.['minlength'] || register.controls['password'].errors?.['pattern']"
+                  >
+                    Su contraseña no cumple con la seguridad requerida
+                  </p>
+                </div>
+              </div>
+              <div class="flex-fill">
+                <label for="confirmPassword" class="form-label"
+                  >Confirmar contraseña</label
+                >
+                <input
+                  type="{{ passwordVisible ? 'text' : 'password' }}"
+                  class="form-control"
+                  formControlName="confirmPassword"
+                  placeholder=""
+                  value=""
+                  required=""
+                  [ngClass]="{
+                    'is-invalid':
+                      register.controls['confirmPassword'].touched &&
+                      register.controls['confirmPassword'].invalid,
+                    'is-valid': register.controls['confirmPassword'].valid
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    register.controls['confirmPassword'].touched &&
+                    register.controls['confirmPassword'].invalid
+                  "
+                >
+                  <p
+                    *ngIf="register.controls['confirmPassword'].errors?.['required']"
+                  >
+                    Debe confirmar su contraseña
+                  </p>
+                  <p
+                    *ngIf="register.controls['confirmPassword'].errors?.['mustMatch']"
+                  >
+                    No coincide su contraseña
+                  </p>
+                </div>
+              <!-- </div> -->
             </div>
-          </div>
-
-          <div class="col-sm-6">
-            <label for="newPassword" class="form-label">Contraseña</label>
-            <input
-              type="password"
-              class="form-control"
-              formControlName="password"
-              placeholder=""
-              value=""
-              required=""
-              [ngClass]="{
-                'is-invalid':
-                  register.controls['password'].touched &&
-                  register.controls['password'].invalid,
-                'is-valid': register.controls['password'].valid
-              }"
-            />
-            <div
-              class="invalid-feedback"
-              *ngIf="
-                register.controls['password'].touched &&
-                register.controls['password'].invalid
-              "
-            >
-              <p *ngIf="register.controls['password'].errors?.['required']">
-                Por favor, elija una contraseña, este campo es OBLIGATORIO
-              </p>
-              <p
-                *ngIf="register.controls['password'].errors?.['minlength'] || register.controls['password'].errors?.['pattern']"
-              >
-                Su contraseña no cumple con la seguridad requerida
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <label for="confirmPassword" class="form-label"
-              >Confirmar contraseña</label
-            >
-            <input
-              type="password"
-              class="form-control"
-              formControlName="confirmPassword"
-              placeholder=""
-              value=""
-              required=""
-              [ngClass]="{
-                'is-invalid':
-                  register.controls['confirmPassword'].touched &&
-                  register.controls['confirmPassword'].invalid,
-                'is-valid': register.controls['confirmPassword'].valid
-              }"
-            />
-            <div
-              class="invalid-feedback"
-              *ngIf="
-                register.controls['confirmPassword'].touched &&
-                register.controls['confirmPassword'].invalid
-              "
-            >
-              <p
-                *ngIf="register.controls['confirmPassword'].errors?.['required']"
-              >
-                Debe confirmar su contraseña
-              </p>
-              <p
-                *ngIf="register.controls['confirmPassword'].errors?.['mustMatch']"
-              >
-                No coincide su contraseña
-              </p>
-            </div>
-          </div>
+          </div> 
         </div>
 
-        <div class="form-check my-4" *ngIf="!signed">
+        <div class="form-check my-4">
           <input
             id="agree"
             type="checkbox"
@@ -292,7 +278,7 @@
           type="submit"
           [disabled]="!register.valid"
         >
-          {{ signed ? "Actualizar datos" : "Registrarse" }}
+          Registrarse
         </button>
       </form>
     </div>

@@ -13,8 +13,13 @@ import Swal from 'sweetalert2';
 })
 export class PostsPageComponent {
   formPost: FormGroup;
-  listPosts: Post[] = [];
   userSignedId: number = 0;
+  editPost: boolean = false;
+
+  listPosts: Post[] = [];
+  listPostsToShow: Post[] = [];
+  currentCount: number = 6;
+
 
   constructor(private postService: PostsService) {
     this.formPost = new FormGroup({
@@ -27,6 +32,8 @@ export class PostsPageComponent {
   }
 
   async ngOnInit(){
+    window.scrollTo(0, 0);
+    
     const user = localStorage.getItem('user');
     if(user){
       this.userSignedId = parseInt(user);
@@ -36,22 +43,19 @@ export class PostsPageComponent {
 
   async loadPosts(){
     this.listPosts = await this.postService.getAllPost();
-    console.log(this.listPosts);
+    this.listPostsToShow = this.listPosts.slice(0, this.currentCount)
+    console.log(this.listPostsToShow);
     
   }
 
-  // async loadLikes(id:number): Promise<number>{
-  //   const likes = await this.postService.getOnePost(id);
-  //   console.log(likes);
-  //   return likes;
-    
-  // }
-
-  // async loadComments(id:number): Promise<number>{
-  //   const comments = await this.postService.getOnePost(id);
-  //   console.log(comments);
-  //   return comments;
-  // }
+  showMore() {
+    if (this.currentCount < this.listPosts.length) {
+      const rest = this.listPosts.length - this.currentCount;
+      const itemsToAdd = Math.min(rest, 3);
+      this.listPostsToShow = this.listPosts.slice(0, this.currentCount + itemsToAdd);
+      this.currentCount += itemsToAdd;
+    }
+  }
 
   async enviarPost() {
     let data = this.formPost.value;
@@ -89,4 +93,9 @@ export class PostsPageComponent {
     }
     
   }
+
+  toggleEditPost(){
+    this.editPost = !this.editPost;
+  }
+
 }

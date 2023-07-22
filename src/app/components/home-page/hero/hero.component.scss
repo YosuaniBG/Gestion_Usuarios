@@ -1,8 +1,12 @@
-.wave{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    object-fit: cover;
-    ;
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+}
+
+.bg-hero {
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/25/13/00/purse-1478852_1280.jpg");
+  background-size: cover;
 }

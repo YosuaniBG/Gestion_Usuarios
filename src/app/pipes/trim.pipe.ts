@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TrimPipe implements PipeTransform {
 
   transform(value: string, ...args: any[]): string {
-    return value.slice(0, 100)+ "...";
+    return value.slice(0, 50)+ "...";
   }
 
 }

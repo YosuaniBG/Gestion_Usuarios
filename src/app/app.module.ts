@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { TrimPipe } from './pipes/trim.pipe';
 import { DateFromNowPipe } from './pipes/date-from-now.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DateFromNowPipe } from './pipes/date-from-now.pipe';
     CommentsPageComponent,
     TodoPageComponent,
     TrimPipe,
-    DateFromNowPipe
+    DateFromNowPipe,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

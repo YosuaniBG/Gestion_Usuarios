@@ -1,0 +1,97 @@
+.cover{
+    padding: 0px;
+    height: 150px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-image: url('https://cdn.pixabay.com/photo/2015/09/09/19/56/office-932926_1280.jpg');
+    // background-image: url('https://placehold.co/1200x300/706c6c/FFF');
+    background-size: cover;
+    background-position: center;
+}
+
+.image-profile{
+    position: absolute;
+    top: 70px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+}
+
+.change-cover{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 4px 10px;
+    font-size: 20px;
+    color: white;
+    
+
+    &:hover{
+        transform: scale(1.1);
+        background-color: rgba(7, 7, 7, 0.126);
+    }
+}
+
+.card-indic{
+    span{
+        font-size: 60px;
+    }
+}
+
+.change_pass{
+    span{
+      &:hover{
+        cursor: pointer;
+        color: rgb(7, 92, 157) !important;
+      }  
+    }
+}
+
+.card-news{
+    &:hover{
+        text-decoration: underline;
+        font-weight: 500;
+    }
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.news{
+    height: calc(100vh - 200px);
+    overflow: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+
+        &:vertical {
+            width:7px  
+        }
+
+        &:horizontal{
+            height: 7px;
+        }
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    } 
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #cfcbcb;
+        border-radius: 20px;
+        border: 2px solid #f1f2f3;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+
+    
+    
+}
